@@ -9,7 +9,6 @@ public class InputController : MonoBehaviour
     private PuckMover _puckMover;
     private void Awake()
     {
-        Debug.Log(mask);
         _playerInput = new PlayerInput();
         _playerInput.Character.Selection.started += ctx => Selection_started();
         _playerInput.Character.Selection.canceled += ctx => Selection_canceled();

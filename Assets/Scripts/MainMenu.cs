@@ -1,26 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject _mainMenuPanel;
-    public UnityEvent PlayLevel=new UnityEvent();
+    [SerializeField] TMP_Text CoinsQuantity;
+    private Purse _purse;
+    private int CoinChange = 1;
 
-    public void StartMainMenu()
+    private void Awake()
     {
-        _mainMenuPanel.SetActive(true);
+        _purse = GameObject.Find("Purse").GetComponent<Purse>();
+        _purse.NevCoins.AddListener(NevCoins);
     }
-        public void PlayButton()
+    private void Start()
     {
-        _mainMenuPanel.SetActive(false);
-        //gameObject.SetActive(false);
-        PlayLevel.Invoke();
+        CoinsQuantity.text = _purse.AmountCoins.ToString();
+    }
+    public void PlayButton()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void ExitButton()
     {
         Application.Quit();
+    }
+
+    public void CoinsButton()
+    {
+        if (_purse.ChangeCoins(-CoinChange))
+        {
+            CoinChange++;
+        }
+    }
+
+    private void NevCoins(int coins)
+    {
+        CoinsQuantity.text = coins.ToString();
     }
 }

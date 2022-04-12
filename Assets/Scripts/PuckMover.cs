@@ -7,11 +7,15 @@ public class PuckMover : MonoBehaviour
     private Vector3 _position;
     private bool _state;
     private Rigidbody _rigidbody;
+    private Transform _startTransform;
 
     private void Awake()
     {
         _rigidbody=GetComponent<Rigidbody>();
+
     }
+
+
 
     private void FixedUpdate()
     {
@@ -32,8 +36,7 @@ public class PuckMover : MonoBehaviour
         {
             _position = _rigidbody.position;
         }
-            _rigidbody.useGravity = !_state;
-
+        _rigidbody.useGravity = !_state;
     }
 
     public void SetMovePosition(Vector3 position)

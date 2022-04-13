@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuckMover : MonoBehaviour
 {
     private Vector3 _position;
     private bool _state;
     private Rigidbody _rigidbody;
-    private Transform _startTransform;
-
+    public UnityEvent<bool> PuckSelected = new UnityEvent<bool>();
     private void Awake()
     {
         _rigidbody=GetComponent<Rigidbody>();
@@ -36,6 +36,7 @@ public class PuckMover : MonoBehaviour
             _position = _rigidbody.position;
         }
         _rigidbody.useGravity = !_state;
+        PuckSelected.Invoke(_state);
     }
 
     public void SetMovePosition(Vector3 position)

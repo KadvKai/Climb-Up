@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<Transform>  _coinsSpawnPositions;
-    [SerializeField] int _coinsSpawnQuantity=10;
+    [SerializeField] int _coinsSpawnQuantity=25;
     [SerializeField] Ñoin _coin;
     [SerializeField] CoinsQuantity coinsQuantityIndicator;
     [SerializeField] PuckMover _puckL;

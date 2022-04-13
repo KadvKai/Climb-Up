@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f35a0ddbd55ec4ca20f8ffaeb6a008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PuckSelected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &4575171089544529277
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,7 +168,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4575171089544529154}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 506f0e83359171e468bc56e66a7fee4b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.11

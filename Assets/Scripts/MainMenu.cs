@@ -8,17 +8,17 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] TMP_Text CoinsQuantity;
-    private Purse _purse;
+    private Wallet _wallet;
     private int CoinChange = 1;
 
     private void Awake()
     {
-        _purse = GameObject.Find("Purse").GetComponent<Purse>();
-        _purse.NevCoins.AddListener(NevCoins);
+        _wallet = GameObject.FindObjectOfType<Wallet>();
+        _wallet.NevCoins.AddListener(NevCoins);
     }
     private void Start()
     {
-        CoinsQuantity.text = _purse.AmountCoins.ToString();
+        CoinsQuantity.text = _wallet.QuantityCoins.ToString();
     }
     public void PlayButton()
     {
@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
 
     public void CoinsButton()
     {
-        if (_purse.ChangeCoins(-CoinChange))
+        if (_wallet.ChangeCoins(-CoinChange))
         {
             CoinChange++;
         }

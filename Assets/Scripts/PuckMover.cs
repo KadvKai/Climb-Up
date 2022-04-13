@@ -31,7 +31,6 @@ public class PuckMover : MonoBehaviour
     public void SetStateMove(bool state)
     {
         _state = state;
-        Debug.Log(state);
         if (_state)
         {
             _position = _rigidbody.position;

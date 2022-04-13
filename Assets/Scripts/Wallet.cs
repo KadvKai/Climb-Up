@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Purse : MonoBehaviour
+public class Wallet : MonoBehaviour
 {
     [SerializeField] int _maxCoins = 20;
     public UnityEvent<int> NevCoins=new UnityEvent<int>();
-    public int AmountCoins { get; private set; }
+    public int QuantityCoins { get; private set; }
     private void Awake()
     {
-        AmountCoins = 10;
+        QuantityCoins = 10;
         DontDestroyOnLoad(this);
     }
 
     public bool ChangeCoins(int coins)
     {
-        var oldAmountCoins = AmountCoins;
-        AmountCoins += coins;
-        if (AmountCoins<0|| AmountCoins> _maxCoins)
+        var oldQuantityCoins = QuantityCoins;
+        QuantityCoins += coins;
+        if (QuantityCoins<0|| QuantityCoins> _maxCoins)
         {
-            AmountCoins = oldAmountCoins;
+            QuantityCoins = oldQuantityCoins;
             return false;
         }
         else
         {
-            NevCoins.Invoke(AmountCoins);
+            NevCoins.Invoke(QuantityCoins);
             return true;
         }
     }

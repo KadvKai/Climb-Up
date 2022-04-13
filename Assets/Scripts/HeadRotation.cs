@@ -8,6 +8,7 @@ public class HeadRotation : MonoBehaviour
     [SerializeField] PuckMover _puckL;
     [SerializeField] PuckMover _puckR;
     [SerializeField] MultiAimConstraint _multiAimConstraint;
+    [SerializeField] float _spiedRotation=1f;
 
     private void Awake()
     {
@@ -15,41 +16,54 @@ public class HeadRotation : MonoBehaviour
         _puckL.PuckSelected.AddListener(PuckLSelected);
         _puckR.PuckSelected.AddListener(PuckRSelected);
     }
-    private void Start()
-    {
-        //Debug.Log(_multiAimConstraint.data.sourceObjects[0].weight);
-        //_multiAimConstraint.data.sourceObjects.Add(_puckL.transform);
-        //_multiAimConstraint.data.sourceObjects.Add(new WeightedTransform(_puckR.transform, 0));
-    }
 
     private void PuckLSelected(bool selected)
     {
         if (selected)
         {
-            var data =_multiAimConstraint.data.sourceObjects;
-            data .SetWeight(0,1);
-            _multiAimConstraint.data.sourceObjects = data ;
+            StartCoroutine(WeightChange(0, 1));
         }
         else
         {
-            var data = _multiAimConstraint.data.sourceObjects;
-            data.SetWeight(0, 0);
-            _multiAimConstraint.data.sourceObjects = data;
+            StartCoroutine(WeightChange(0, 0));
         }
     }
     private void PuckRSelected(bool selected)
     {
         if (selected)
         {
-            var data = _multiAimConstraint.data.sourceObjects;
-            data.SetWeight(1, 1);
-            _multiAimConstraint.data.sourceObjects = data;
+            StartCoroutine(WeightChange(1, 1));
         }
         else
         {
-            var data = _multiAimConstraint.data.sourceObjects;
-            data.SetWeight(1, 0);
-            _multiAimConstraint.data.sourceObjects = data;
+            StartCoroutine(WeightChange(1, 0));
+        }
+    }
+
+    private IEnumerator WeightChange(int index,float weight)
+    {
+        var currentweight = _multiAimConstraint.data.sourceObjects[index].weight;
+        if (currentweight< weight)
+        {
+            while (currentweight < weight)
+            {
+                currentweight += Time.deltaTime* _spiedRotation;
+                var data = _multiAimConstraint.data.sourceObjects;
+                data.SetWeight(index, currentweight);
+                _multiAimConstraint.data.sourceObjects = data;
+                yield return null;
+            }
+        }
+        if (currentweight > weight)
+        {
+            while (currentweight > weight)
+            {
+                currentweight -= Time.deltaTime* _spiedRotation;
+                var data = _multiAimConstraint.data.sourceObjects;
+                data.SetWeight(index, currentweight);
+                _multiAimConstraint.data.sourceObjects = data;
+                yield return null;
+            }
         }
     }
 }

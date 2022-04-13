@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] LayerMask mask;
+    [SerializeField] LayerMask _maskPosition;
+    [SerializeField] LayerMask _maskSelection;
     private PlayerInput _playerInput;
     private PuckMover _puckMover;
     private void Awake()
@@ -27,7 +28,7 @@ public class InputController : MonoBehaviour
     {
         _playerInput.Character.Position.performed += Position_performed;
         var ray = Camera.main.ScreenPointToRay(_playerInput.Character.Position.ReadValue<Vector2>());
-        if (Physics.Raycast(ray, out var hit, 100))
+        if (Physics.Raycast(ray, out var hit, 100, _maskSelection))
         {
             _puckMover = hit.collider.GetComponent<PuckMover>();
             if (_puckMover != null) _puckMover.SetStateMove(true);
@@ -47,7 +48,7 @@ public class InputController : MonoBehaviour
         if (_puckMover != null)
         {
             var ray = Camera.main.ScreenPointToRay(context.ReadValue<Vector2>());
-            if (Physics.Raycast(ray, out var hit, 100, mask))
+            if (Physics.Raycast(ray, out var hit, 100, _maskPosition))
             {
                 //Debug.Log("Hit="+hit.point);
                 _puckMover.SetMovePosition(hit.point);

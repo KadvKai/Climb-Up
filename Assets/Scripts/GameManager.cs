@@ -24,8 +24,4 @@ public class GameManager : MonoBehaviour
             coin.AddWallet(wallet);
         }
     }
-
-    private void PlayLevel()
-    {
-    }
 }

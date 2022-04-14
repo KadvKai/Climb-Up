@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5988184065098686290}
   - component: {fileID: 7250815252083199462}
   - component: {fileID: 4358988120506440314}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2363468524252401927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.0000002, z: 0}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.2}
+  m_LocalScale: {x: 0.2, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4575171091018097594}
   m_RootOrder: 0
@@ -144,7 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterRigidbody: {fileID: 0}
+  _speed: 1.5
   PuckSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  Finish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!54 &4575171089544529277
@@ -155,7 +159,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4575171089544529154}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -190,8 +194,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.00000011920929, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 10000
-  m_Damper: 10
+  m_Spring: 1000000
+  m_Damper: 10000
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.025
@@ -213,7 +217,7 @@ GameObject:
   - component: {fileID: 4575171091018097595}
   - component: {fileID: 4575171091018097592}
   - component: {fileID: 4575171091018097593}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 4575171091018097598}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.01, z: 0.20000009}
+  m_LocalScale: {x: 0.2, y: 0.04, z: 0.20000009}
   m_Children:
   - {fileID: 7179985620782812480}
   m_Father: {fileID: 4575171089544529279}

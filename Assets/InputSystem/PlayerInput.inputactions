@@ -22,24 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "HoldSelection",
-                    "type": "Button",
-                    "id": "d6c4a503-0e73-4f1e-bcb5-96caa9abc10f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(duration=2)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Delta",
-                    "type": "Value",
-                    "id": "5b805201-0c54-44c9-b74f-079329cbd575",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -50,6 +32,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "Selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92a97038-12dd-48e8-b38a-0c2fbefda9f0",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "Selection",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -67,23 +60,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4f1b940f-c45c-48e9-b119-60477896bacd",
-                    "path": "<Mouse>/leftButton",
+                    "id": "e270c431-addf-4b18-8bbc-50f03b81b956",
+                    "path": "<Touchscreen>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
-                    "action": "HoldSelection",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "866270ca-f667-46c2-991f-e138b0511c11",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Delta",
+                    "groups": "Mobile",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

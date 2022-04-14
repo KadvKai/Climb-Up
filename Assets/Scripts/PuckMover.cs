@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class PuckMover : MonoBehaviour
 {
     [SerializeField] Rigidbody _masterRigidbody;
+    [SerializeField] float _offsetY;
     [SerializeField] float _speed;
     [SerializeField] float _time;
     private Vector3 _position;
     private bool _state;
     private Rigidbody _rigidbody;
+    private CapsuleCollider _capsuleCollider;
+    private float _capsuleColliderRadius;
     public UnityEvent<bool> PuckSelected = new UnityEvent<bool>();
     public UnityEvent<PuckMover> Finish = new UnityEvent<PuckMover>();
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _capsuleColliderRadius = _capsuleCollider.radius;
+        _capsuleCollider.radius = _capsuleColliderRadius * 5;
+        _capsuleCollider.isTrigger = true;
     }
 
     private void FixedUpdate()
@@ -39,6 +47,8 @@ public class PuckMover : MonoBehaviour
         {
             _rigidbody.isKinematic = false;
             _position = _masterRigidbody.position;
+            _capsuleCollider.radius = _capsuleColliderRadius;
+            _capsuleCollider.isTrigger = false;
         }
         else
         {
@@ -50,7 +60,7 @@ public class PuckMover : MonoBehaviour
 
     public void SetMovePosition(Vector3 position)
     {
-        _position = position;
+        _position =new Vector3(position.x,position.y+_offsetY) ;
     }
     private void OnTriggerEnter(Collider collider)
     {
@@ -63,7 +73,7 @@ public class PuckMover : MonoBehaviour
     private IEnumerator SetKinematic()
     {
         var time = _time;
-        while (_rigidbody.velocity.magnitude>0.01f && time>0)
+        while (_rigidbody.velocity.magnitude>0.01f || time>0)
         {
             if (_rigidbody.velocity.magnitude > 0.01f) time = _time;
             else time -= Time.deltaTime;
@@ -71,5 +81,7 @@ public class PuckMover : MonoBehaviour
 
         }
         _rigidbody.isKinematic = true;
+            _capsuleCollider.radius = _capsuleColliderRadius*5;
+        _capsuleCollider.isTrigger = true;
     }
 }
